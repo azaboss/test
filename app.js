@@ -81,3 +81,44 @@ console.log(
     return acc;
   }, {})
 );
+
+
+************************
+//       TEST#2
+
+// Markup
+const appContainer = document.querySelector(".date-container");
+const listItem = document.querySelector(".item");
+const dateEl = document.querySelector(".date");
+
+let counter = 0;
+
+function init() {
+  const [date, value] = Object.entries(res)[counter];
+  const mainInfo = Object.entries(value);
+
+  listItem.textContent = "";
+  dateEl.textContent = date;
+
+  for (const [key, value] of mainInfo) {
+    const html = `<p>${key} - ${value.salary}<p/>`;
+    listItem.insertAdjacentHTML("beforeend", html);
+  }
+}
+
+document.querySelector(".prev").addEventListener("click", function () {
+  counter--;
+  if (counter < 0) return (counter = 0);
+  init();
+});
+
+document.querySelector(".next").addEventListener("click", function () {
+  const dataLength = Object.entries(res).length - 1;
+
+  counter++;
+  if (counter > dataLength) return (counter = dataLength);
+  init();
+});
+
+init();
+
