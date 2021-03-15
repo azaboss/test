@@ -122,3 +122,41 @@ document.querySelector(".next").addEventListener("click", function () {
 
 init();
 
+********************************
+//   TEST #3
+  
+  const test = [
+  {
+    id: 1000,
+    name: "Like",
+    parent_id: "1003",
+    parent_name: "Root",
+  },
+  {
+    id: 1001,
+    name: "Count",
+    parent_id: 1000,
+    parent_name: "Like",
+  },
+  {
+    id: 1002,
+    name: "Subscribe",
+    parent_id: "",
+    parent_name: "",
+  },
+  {
+    id: 1003,
+    name: "Root",
+    parent_id: "",
+    parent_name: "",
+  },
+];
+
+console.log(
+  test.reduce((acc, { id, parent_name, name }) => {
+    acc[id] = `/ > ${parent_name} > ${name}`;
+
+    return acc;
+  }, {})
+);
+
