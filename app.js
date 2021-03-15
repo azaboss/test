@@ -152,9 +152,16 @@ init();
   },
 ];
 
+
 console.log(
   test.reduce((acc, { id, parent_name, name }) => {
-    acc[id] = `/ > ${parent_name} > ${name}`;
+    if (!parent_name) {
+      acc[id] = `/ > ${name}`;
+    } else {
+      acc[id] = `/ > ${
+        parent_name === "Root" ? "" : "Root >"
+      } ${parent_name} > ${name}`;
+    }
 
     return acc;
   }, {})
